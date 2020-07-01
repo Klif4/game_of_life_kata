@@ -3,8 +3,8 @@ export class GameOfLife {
     private cells: boolean[][]
 
 
-    constructor(cells: boolean[][]) {
-        this.cells = cells
+    constructor(initialCells: boolean[][]) {
+        this.cells = initialCells
     }
 
     nextStep(): boolean[][] {
@@ -21,7 +21,6 @@ export class GameOfLife {
         return newGOLState
 
     }
-
 
     allCells(): boolean[][] {
         return this.cells
