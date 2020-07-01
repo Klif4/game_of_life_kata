@@ -22,11 +22,11 @@ export class GameOfLife {
         return this.cells.filter(cell => cell.is(xPos, yPos))[0]
     }
 
-    nextStep(): void {
-
-    }
-
     allCells(): Cell[] {
         return this.cells
+    }
+
+    nextStep(): void {
+
     }
 }

@@ -8,12 +8,9 @@ describe('rename me', () => {
     })
     it('all cells should stay dead when all cells are dead', () => {
       const gameOfLife = GameOfLife.of(5,5)
-      gameOfLife.nextStep();
+      gameOfLife.nextStep()
       gameOfLife.allCells().forEach(cell => {
           expect(cell.isAlive()).toBe(false)
       })
-
-
-
     })
 })
