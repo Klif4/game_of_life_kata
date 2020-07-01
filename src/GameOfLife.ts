@@ -1,29 +1,24 @@
-import {Cell} from "./Cell";
-
 export class GameOfLife {
 
-    private cells : Cell[] = []
+    private readonly cells : boolean[][]
 
-    constructor(cells: Cell[]) {
+    constructor(cells: boolean[][]) {
         this.cells = cells
     }
 
     static of(columns: number, rows: number) {
-        let cells: Cell[] = []
+        let cells: boolean[][] = [[]]
         for(let i=0; i<columns; i++){
+            cells.push([])
             for (let j = 0; j<rows; j++) {
-                cells.push(new Cell(i, j))
+                cells[i].push(false)
             }
         }
         return new GameOfLife(cells)
     }
 
-    cell(xPos: number, yPos: number): Cell {
-        return this.cells.filter(cell => cell.is(xPos, yPos))[0]
-    }
-
-    allCells(): Cell[] {
-        return this.cells
+    cell(xPos: number, yPos: number): boolean {
+        return this.cells[xPos][yPos]
     }
 
     nextStep(): void {
