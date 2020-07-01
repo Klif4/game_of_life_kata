@@ -22,17 +22,16 @@ export class GameOfLife {
 
     }
 
-    allCells(): boolean[][] {
-        return this.cells
-    }
-
-    private setCellDependOfNeighbor(l: number, c:number): boolean{
+    private setCellDependOfNeighbor(l: number, c:number): boolean {
         const numberOfAliveNeighbor = this.numberOfAliveNeighborOfCell(l, c)
         if (numberOfAliveNeighbor <= 1 ) {
             return false
         }
         if (numberOfAliveNeighbor === 3 ) {
             return true
+        }
+        if (numberOfAliveNeighbor > 3 ) {
+            return false
         }
 
         return this.cells[l][c]

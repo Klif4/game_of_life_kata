@@ -17,8 +17,8 @@ describe('rename me', () => {
             [false, false, false, false, false],
             [false, false, false, false, false]
         ]
-        gameOfLife.nextStep()
-        expect(gameOfLife.allCells()).toStrictEqual(expectedResult)
+
+        expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
     })
     describe('une cellule vivante, 0 dans le voisinage', () => {
         describe('gameOfLife 3x3', () => {
@@ -329,6 +329,24 @@ describe('rename me', () => {
                 [false, false, false, false],
                 [false, true, true, true],
                 [false, false, false, false],
+                [false, false, false, false]
+            ]
+            expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
+        })
+    })
+    describe('Si une cellule a plus de trois voisine vivantes, elle meurt', () => {
+        it('3 voisines vivantes', () => {
+            const initial = [
+                [false, false, false, false],
+                [false, true, true, true],
+                [false, true, true, false],
+                [false, false, false, false]
+            ]
+            const gameOfLife = new GameOfLife(initial)
+            const expectedResult = [
+                [false, false, true, false],
+                [false, true, false, true],
+                [false, true, false, true],
                 [false, false, false, false]
             ]
             expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
