@@ -6,12 +6,16 @@ export class GameOfLife {
         this.cells = cells
     }
 
-    static of(columns: number, rows: number) {
-        let cells: boolean[][] = [[]]
+    static of(columns: number, rows: number, aliveCells: { x: number; y: number }[]) {
+        let cells: boolean[][] = []
         for(let i=0; i<columns; i++){
             cells.push([])
             for (let j = 0; j<rows; j++) {
-                cells[i].push(false)
+                if (aliveCells.some(cell => cell.x === i && cell.y === j)) {
+                    cells[i].push(true)
+                } else {
+                    cells[i].push(false)
+                }
             }
         }
         return new GameOfLife(cells)
