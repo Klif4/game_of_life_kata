@@ -1,6 +1,8 @@
 export class GameOfLife {
 
     private cells: boolean[][]
+    private readonly  ALIVE_CELL = true
+    private readonly  DEAD_CELL = false
 
 
     constructor(initialCells: boolean[][]) {
@@ -25,20 +27,20 @@ export class GameOfLife {
     private setCellDependOfNeighbors(line: number, column:number): boolean {
         const numberOfAliveNeighbors = this.numberOfAliveNeighborsOfCell(line, column)
         if (numberOfAliveNeighbors <= 1 ) {
-            return false
+            return this.DEAD_CELL
         }
         if (numberOfAliveNeighbors === 3 ) {
-            return true
+            return this.ALIVE_CELL
         }
         if (numberOfAliveNeighbors > 3 ) {
-            return false
+            return this.DEAD_CELL
         }
 
         return this.cells[line][column]
     }
 
     private numberOfAliveNeighborsOfCell(line: number, column: number): number {
-        return this.neighborOfCell(line, column).filter(cell => cell === true).length
+        return this.neighborOfCell(line, column).filter(cell => cell === this.ALIVE_CELL).length
     }
 
     private neighborOfCell(line: number, column: number): boolean[] {
