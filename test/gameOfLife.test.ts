@@ -1,6 +1,6 @@
-import {GameOfLife} from "../src/GameOfLife";
+import {GameOfLife} from "../src/core/GameOfLife";
 
-describe('rename me', () => {
+describe('Game of life unit tests', () => {
     it('all cells should stay dead when all cells are dead', () => {
         const initial = [
             [false, false, false, false, false],
@@ -20,9 +20,9 @@ describe('rename me', () => {
 
         expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
     })
-    describe('une cellule vivante, 0 dans le voisinage', () => {
+    describe('an alive cell must die when it have no alive cell around', () => {
         describe('gameOfLife 3x3', () => {
-            it('in 3x3 gameOfLife, cellule milieu milieu', () => {
+            it('in 3x3 gameOfLife, middle middle cell alive', () => {
                 const initial = [
                     [false, false, false],
                     [false, true, false],
@@ -36,7 +36,7 @@ describe('rename me', () => {
                 ]
                 expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
             })
-            it('in 3x3 gameOfLife, cellule haut gauche', () => {
+            it('in 3x3 gameOfLife, top left cell alive', () => {
                 const initial = [
                     [true, false, false],
                     [false, false, false],
@@ -50,7 +50,7 @@ describe('rename me', () => {
                 ]
                 expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
             })
-            it('in 3x3 gameOfLife, cellule haut milieu', () => {
+            it('in 3x3 gameOfLife, top middle cell alive', () => {
                 const initial = [
                     [false, true, false],
                     [false, false, false],
@@ -64,7 +64,7 @@ describe('rename me', () => {
                 ]
                 expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
             })
-            it('in 3x3 gameOfLife, cellule haut droite', () => {
+            it('in 3x3 gameOfLife, top right cell alive', () => {
                 const initial = [
                     [false, false, true],
                     [false, false, false],
@@ -78,7 +78,7 @@ describe('rename me', () => {
                 ]
                 expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
             })
-            it('in 3x3 gameOfLife, cellule milieu gauche', () => {
+            it('in 3x3 gameOfLife, middle left cell alive', () => {
                 const initial = [
                     [false, false, false],
                     [true, false, false],
@@ -92,7 +92,7 @@ describe('rename me', () => {
                 ]
                 expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
             })
-            it('in 3x3 gameOfLife, cellule milier droite', () => {
+            it('in 3x3 gameOfLife, middle right cell alive', () => {
                 const initial = [
                     [false, false, false],
                     [false, false, true],
@@ -106,7 +106,7 @@ describe('rename me', () => {
                 ]
                 expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
             })
-            it('in 3x3 gameOfLife, cellule bas gauche', () => {
+            it('in 3x3 gameOfLife, bottom left cell alive', () => {
                 const initial = [
                     [false, false, false],
                     [false, false, false],
@@ -120,7 +120,7 @@ describe('rename me', () => {
                 ]
                 expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
             })
-            it('in 3x3 gameOfLife, cellule bas milieu', () => {
+            it('in 3x3 gameOfLife, bottom middle cell alive', () => {
                 const initial = [
                     [false, false, false],
                     [false, false, false],
@@ -134,7 +134,7 @@ describe('rename me', () => {
                 ]
                 expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
             })
-            it('in 3x3 gameOfLife, cellule bas droite', () => {
+            it('in 3x3 gameOfLife, bottom right cell alive', () => {
                 const initial = [
                     [false, false, false],
                     [false, false, false],
@@ -150,7 +150,7 @@ describe('rename me', () => {
             })
         })
         describe('gameOfLife 4x4', () => {
-            it('in 3x3 gameOfLife, cellule haut', () => {
+            it('in 3x3 gameOfLife, top cell alive cell alive', () => {
                 const initial = [
                     [false, false, true, false],
                     [false, false, false, false],
@@ -166,7 +166,7 @@ describe('rename me', () => {
                 ]
                 expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
             })
-            it('in 3x3 gameOfLife, cellule haut et bas', () => {
+            it('in 3x3 gameOfLife, top and bottom cell alive', () => {
                 const initial = [
                     [false, false, true, false],
                     [false, false, false, false],
@@ -182,7 +182,7 @@ describe('rename me', () => {
                 ]
                 expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
             })
-            it('in 3x3 gameOfLife, cellule haut et bas et gauche', () => {
+            it('in 3x3 gameOfLife, top and bottom and gauche cell alive', () => {
                 const initial = [
                     [false, false, true, false],
                     [true, false, false, false],
@@ -198,7 +198,7 @@ describe('rename me', () => {
                 ]
                 expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
             })
-            it('in 3x3 gameOfLife, cellule haut et bas et gauche et droite', () => {
+            it('in 3x3 gameOfLife, top and bottom and gauche and right cell alive', () => {
                 const initial = [
                     [false, false, true, false],
                     [true, false, false, false],
@@ -216,8 +216,8 @@ describe('rename me', () => {
             })
         })
     })
-    describe('cellult vivante a une seule cellule vivante dans le voisinage, elle meurt', () => {
-        it('deux cellules vivantes colles horizontale', () => {
+    describe('an alive cell with 1 alive cell around must die', () => {
+        it('horizontal', () => {
             const initial = [
                 [false, false, false, false],
                 [false, true, true, false],
@@ -233,7 +233,7 @@ describe('rename me', () => {
             ]
             expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
         })
-        it('deux cellules vivantes colles verticales', () => {
+        it('vertical', () => {
             const initial = [
                 [false, false, false, false],
                 [false, true, false, false],
@@ -249,7 +249,7 @@ describe('rename me', () => {
             ]
             expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
         })
-        it('deux cellules vivantes colles diagonales', () => {
+        it('diagonal', () => {
             const initial = [
                 [false, false, false, false],
                 [false, true, false, false],
@@ -266,8 +266,8 @@ describe('rename me', () => {
             expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
         })
     })
-    describe('Si une cellule a deux voisines vivantes, elle garde son état', () => {
-        it('deux voisines en ligne', () => {
+    describe('a cell with 2 alive cells around keep his state', () => {
+        it('line', () => {
             const initial = [
                 [false, false, false, false],
                 [false, true, false, true],
@@ -283,7 +283,7 @@ describe('rename me', () => {
             ]
             expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
         })
-        it('deux voisines en random', () => {
+        it('random', () => {
             const initial = [
                 [false, false, false, false],
                 [false, true, false, false],
@@ -300,8 +300,8 @@ describe('rename me', () => {
             expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
         })
     })
-    describe('Si une cellule a trois voisine vivantes, elle vit', () => {
-        it('trois en ligne', () => {
+    describe('a cell with 3 alive cells around must be alive', () => {
+        it('line', () => {
             const initial = [
                 [false, false, false, false],
                 [false, true, true, true],
@@ -317,7 +317,7 @@ describe('rename me', () => {
             ]
             expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
         })
-        it('trois en colonne', () => {
+        it('column', () => {
             const initial = [
                 [false, false, true, false],
                 [false, false, true, false],
@@ -334,8 +334,8 @@ describe('rename me', () => {
             expect(gameOfLife.nextStep()).toStrictEqual(expectedResult)
         })
     })
-    describe('Si une cellule a plus de trois voisine vivantes, elle meurt', () => {
-        it('3 voisines vivantes', () => {
+    describe('a cell with more than 3 alive cells around must be dead', () => {
+        it('more than 3 alive cells around', () => {
             const initial = [
                 [false, false, false, false],
                 [false, true, true, true],
